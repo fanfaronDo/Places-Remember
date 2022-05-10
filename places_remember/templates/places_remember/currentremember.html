@@ -1,9 +1,16 @@
 {% extends 'places_remember/base.html' %}
 
-{% block title %}Sign Up user{% endblock %}
 
+{% load static %}
 {% block content %}
 
 <H1>Current remember</H1>
+
+{% for remem in remember %}
+
+    <p>{{ remem.title }}</p>
+    <p>{{ remem.memo }}</p>
+
+{% endfor %}
 
 {% endblock %}

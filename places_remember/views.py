@@ -1,3 +1,4 @@
+import requests
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -6,6 +7,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.views.generic import TemplateView
 from social_django.models import UserSocialAuth
+
+from places_remember.forms import RememberForm
+from places_remember.models import Remember
 
 
 def signupuser(request):
@@ -56,12 +60,23 @@ def home(request):
 
 
 def currentremember(request):
-    return render(request, 'places_remember/currentremember.html')
+    remember = Remember.objects.filter(user=request.user, datecompleted__isnull=True)
+    return render(request, 'places_remember/currentremember.html', {'remember': remember})
 
 
 def createremember(request):
     if request.GET == 'GET':
-        return render(request, 'places_remember/createremember.html', {'form': AuthenticationForm()})
-
+        return render(request, 'places_remember/createremember.html', {'form': RememberForm()})
     else:
-        pass
+        try:
+            form = RememberForm(request.POST)
+            newrem = form.save(commit=False)
+            newrem.user = request.user
+            newrem.save()
+            return redirect('currentremember')
+        except ValueError:
+            return render(request, 'places_remember/createremember.html', {'form': RememberForm(),
+                                                                           'error': 'Переданы неверные данные'})
+
+
+
