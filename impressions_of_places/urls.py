@@ -20,10 +20,11 @@ from places_remember import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
+    path('currentrem/', views.currentremember, name='currentremember'),
+    path('createrem/', views.createremember, name='createremember'),
 
     # auth users
     path('signup/', views.signupuser, name='signupuser'),
-    path('userrec/', views.userrecords, name='userrecords'),
     path('logout/', views.logoutuser, name='logoutuser'),
     path('login/', views.loginuser, name='loginuser'),
     path('oauthvk/', include('social_django.urls', namespace='social')),

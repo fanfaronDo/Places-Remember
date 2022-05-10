@@ -8,9 +8,6 @@ from django.views.generic import TemplateView
 from social_django.models import UserSocialAuth
 
 
-class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = "places_remember/home.html"
-
 def signupuser(request):
     if request.method == "GET":
         return render(request, 'places_remember/signupuser.html', {'form': UserCreationForm()})
@@ -23,16 +20,16 @@ def signupuser(request):
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('userrecords')
+                return redirect('currentremember')
 
             except IntegrityError:
                 return render(request, 'places_remember/signupuser.html', {'form': UserCreationForm(),
-                                                                'error': 'That username has already been taken'})
+                                                                'error': 'Это имя пользователя уже занято'})
 
         else:
             # Tell the user the passwords didn't match
             return render(request, 'places_remember/signupuser.html', {'form': UserCreationForm(),
-                                                            'error': 'Password did not match'})
+                                                            'error': 'Пароль не соответствует'})
 
 
 def loginuser(request):
@@ -54,9 +51,17 @@ def logoutuser(request):
         return redirect('home')
 
 
-def userrecords(request):
-    return render(request, 'places_remember/userrecords.html')
-
-
 def home(request):
     return render(request, 'places_remember/home.html')
+
+
+def currentremember(request):
+    return render(request, 'places_remember/currentremember.html')
+
+
+def createremember(request):
+    if request.GET == 'GET':
+        return render(request, 'places_remember/createremember.html', {'form': AuthenticationForm()})
+
+    else:
+        pass

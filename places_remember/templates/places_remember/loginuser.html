@@ -1,6 +1,6 @@
 {% extends 'places_remember/base.html' %}
 
-{% block title %}Войти{% endblock %}
+
 
 {% block content %}
 {% load static %}
@@ -34,13 +34,7 @@
 
             <hr>
 
-            <a href="{% url 'social:begin' 'vk-oauth2' %}">
-                <img src="{% static "places_remember/lvk.png" %}" class="avatar-3" data-toggle="tooltip"
-                     width="35" height="35">
-            </a>
-            <a href="{% url 'social:begin' 'facebook' %}">
-                Login with Facebook
-            </a>
+
 
             <div class="text-center">
                  <a href="{% url 'signupuser' %}">Зарегистрироваться</a>

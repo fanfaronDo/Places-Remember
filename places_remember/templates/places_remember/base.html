@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Places Remember</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
@@ -18,6 +18,15 @@
         <span>Places Remember</span>
     </a>
     {% if user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'createremember' %}">Добавить запись</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'currentremember' %}">Показать записи</a>
+            </li>
+
+        </ul>
 
     {% endif %}
     <ul class="navbar-nav ml-auto">
@@ -35,6 +44,12 @@
         <li class="nav-item">
             <a class="nav-link" href='{% url 'loginuser' %}'>Войти</a>
         </li>
+        <a href="{% url 'social:begin' 'vk-oauth2' %}">
+            <img src="{% static "places_remember/lvk.png" %}" class="avatar-3" data-toggle="tooltip"
+                     width="35" height="35"></a>
+        <a href="{% url 'social:begin' 'facebook' %}">
+            <img src="{% static "places_remember/lfb.png" %}" class="avatar-3" data-toggle="tooltip"
+                     width="35" height="35"></a>
     {% endif %}
     </ul>
 </div>

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from places_remember.models import Remember
 
-# Register your models here.
+
+admin.site.register(Remember)
+
