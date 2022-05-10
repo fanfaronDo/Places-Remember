@@ -1,9 +1,15 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.views.generic import TemplateView
+from social_django.models import UserSocialAuth
 
+
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = "places_remember/home.html"
 
 def signupuser(request):
     if request.method == "GET":
@@ -39,7 +45,7 @@ def loginuser(request):
                                                            'error': 'Username and password did not match'})
         else:
             login(request, user)
-            return redirect('currenttodos')
+            return redirect('userrecords')
 
 
 def logoutuser(request):
