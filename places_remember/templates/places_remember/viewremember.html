@@ -5,19 +5,10 @@
 {% block content %}
 
 
-{% if user.profile.profilePicture %}
-
-    <img src="{{ user.profile.profilePicture.url }}" class="rounded float-start" width="160" height="160">
-
-{% else %}
-
-    <img src="{% static 'places_remember/avatar_default.png' %}" class="rounded float-start" width="160" height="160">
-
-{% endif %}
-
 <H3>{{ remember.title }}</H3>
 
 <p>{{ remember.memo }}</p>
+
 
 
 {% endblock %}
