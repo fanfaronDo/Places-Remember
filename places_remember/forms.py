@@ -5,4 +5,5 @@ from .models import Remember
 class RememberForm(ModelForm):
     class Meta:
         model = Remember
-        fields = ['title', 'memo', 'img']
+        fields = ['title', 'memo']
+
