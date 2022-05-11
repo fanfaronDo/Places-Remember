@@ -31,11 +31,15 @@
     {% endif %}
     <ul class="navbar-nav ml-auto">
     {% if user.is_authenticated %}
+        <p class="nav-link" style="padding-right: 50px; padding-bottom: 0px"> {{ user }}</p>
         <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Выйти</a>
         <form style="display: none;" action="{% url 'logoutuser' %}" method="post">
             {% csrf_token %}
             <button id="signOutBtn" type="submit">Выйти</button>
+
         </form>
+
+
 
     {% else %}
         <li class="nav-item">

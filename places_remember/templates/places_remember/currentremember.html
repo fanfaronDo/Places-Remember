@@ -6,11 +6,8 @@
 
 <H1>Current remember</H1>
 
-{% for remem in remember %}
-
-    <p>{{ remem.title }}</p>
-    <p>{{ remem.memo }}</p>
-
-{% endfor %}
+    {% for rem in remember %}
+        <a href={% url 'viewremember' rem.id %}>{{ rem.title }}</a>
+    {% endfor %}
 
 {% endblock %}

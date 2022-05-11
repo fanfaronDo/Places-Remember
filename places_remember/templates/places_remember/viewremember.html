@@ -1,21 +1,23 @@
 {% extends 'places_remember/base.html' %}
 
-{% block title %}Sign Up user{% endblock %}
+
 {% load static %}
 {% block content %}
 
-<H1>Current remember</H1>
 
 {% if user.profile.profilePicture %}
+
     <img src="{{ user.profile.profilePicture.url }}" class="rounded float-start" width="160" height="160">
+
 {% else %}
+
     <img src="{% static 'places_remember/avatar_default.png' %}" class="rounded float-start" width="160" height="160">
+
 {% endif %}
 
+<H3>{{ remember.title }}</H3>
 
-{% for remem in remember %}
-    <p>{{ remem.title }}</p>
-    <p>{{ remem.memo }}</p>
-{% endfor %}
+<p>{{ remember.memo }}</p>
+
 
 {% endblock %}
