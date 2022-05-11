@@ -1,0 +1,14 @@
+{% extends 'places_remember/base.html' %}
+
+{% block content %}
+
+<H1>Создание записи</H1>
+
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+    </form>
+
+
+{% endblock %}

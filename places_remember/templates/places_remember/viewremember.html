@@ -1,8 +1,14 @@
 {% extends 'places_remember/base.html' %}
 
 
+{% load static %}
 {% block content %}
 
-<H1>Home page</H1>
+
+<H3>{{ remember.title }}</H3>
+
+<p>{{ remember.memo }}</p>
+
+
 
 {% endblock %}

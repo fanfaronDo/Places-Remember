@@ -1,0 +1,36 @@
+{% extends 'places_remember/base.html' %}
+
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3 align-self-center">
+            <H1>Ваши записи</H1>
+            <br>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <img src="{% static 'places_remember/avatar_default.png' %}"
+                     class="rounded float-start" width="260" height="260">
+    </div>
+
+    <div class="row justify-content-center">
+        <h2>{{ user }}</h2>
+     </div><br>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+        {% if remember %}
+            <div class="list-group">
+                {% for rem in remember %}
+                    <a href='{% url 'viewremember' rem.id %}'
+                       class='list-group-item list-group-item-action'>{{ rem.title }}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2>У тебя пока нет записей !</h2>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

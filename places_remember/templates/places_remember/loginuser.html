@@ -1,9 +1,9 @@
 {% extends 'places_remember/base.html' %}
 
-{% block title %}Войти{% endblock %}
+
 
 {% block content %}
-
+{% load static %}
 <h2>{{ error }}</h2>
 <form action="" method="post">
     <div class="row justify-content-center mt-5">
@@ -31,7 +31,11 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Войти</button>
             </form>
+
             <hr>
+
+
+
             <div class="text-center">
                  <a href="{% url 'signupuser' %}">Зарегистрироваться</a>
             </div>
